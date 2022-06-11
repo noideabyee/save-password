@@ -1,0 +1,36 @@
+from colorama import Fore
+while True:
+    vrd1=input(Fore.RESET+'''choose number :
+1- Add passworld 
+2- See passworld
+3- Exit
+your choose:''')
+    if vrd1=='1':
+        print(Fore.LIGHTMAGENTA_EX+'first write name of pass and then write passworld')
+        name=input(Fore.RESET+'name of passworld:')
+        pas=input('passworld:')
+        with open('passpycharm.txt', 'a+') as f:
+            f.writelines('\n')
+            f.writelines(name+' '+pas)
+            print((Fore.GREEN+'Done'))
+    elif vrd1=='2':
+        No_pass={}
+        No_where={}
+        f=open('passpycharm.txt','r')
+        itemInlist=(f.readlines()) #khandan
+        n=1
+        for i in itemInlist: #posht ham chap krdn
+            No_pass[n]=i.split()[-1]
+            No_where[n]=i.split()[0]
+            print(Fore.BLUE+str(n)+'-'+((i.split())[0]))
+            n+=1
+        print(str(n)+'-'+'exit')
+        vrd2=int(input(Fore.RESET+'choose number from list:'))
+        if vrd2<n:
+            print(Fore.LIGHTBLUE_EX+"passworld of '%s' is: %s"%(No_where.get(vrd2),No_pass.get(vrd2)))
+        else:
+            pass  
+    elif vrd1=='3':
+        break
+    else:
+        print((Fore.RED+"Error! you should choose between menu's number"))
